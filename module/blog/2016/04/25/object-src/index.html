@@ -64,7 +64,7 @@
 <link href="/module/blog/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="Java,Object," />
 
 
 
@@ -80,15 +80,19 @@
 
 
 
-<meta name="description" content="可乐">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Yale's Blog">
-<meta property="og:url" content="http://yoursite.com/module/blog/index.html">
+<meta name="description" content="Object类是java类的祖先类，所以学习它显得很重要，它的方法如下：1234- public native int hashCode()- public boolean equals(Object obj)- protected native Object clone()- public String toString()
+public native int hashCode()这是一个本地方">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java源码-Object类">
+<meta property="og:url" content="http://yoursite.com/module/blog/2016/04/25/object-src/index.html">
 <meta property="og:site_name" content="Yale's Blog">
-<meta property="og:description" content="可乐">
+<meta property="og:description" content="Object类是java类的祖先类，所以学习它显得很重要，它的方法如下：1234- public native int hashCode()- public boolean equals(Object obj)- protected native Object clone()- public String toString()
+public native int hashCode()这是一个本地方">
+<meta property="og:updated_time" content="2016-04-26T13:38:27.632Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Yale's Blog">
-<meta name="twitter:description" content="可乐">
+<meta name="twitter:title" content="Java源码-Object类">
+<meta name="twitter:description" content="Object类是java类的祖先类，所以学习它显得很重要，它的方法如下：1234- public native int hashCode()- public boolean equals(Object obj)- protected native Object clone()- public String toString()
+public native int hashCode()这是一个本地方">
 
 
 
@@ -106,7 +110,7 @@
   };
 </script>
 
-  <title> Yale's Blog </title>
+  <title> Java源码-Object类 | Yale's Blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -127,9 +131,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left 
-   page-home 
- ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -236,9 +238,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
   
@@ -258,10 +260,7 @@
             
             
               
-                
-                <a class="post-title-link" href="/module/blog/2016/04/25/object-src/" itemprop="url">
-                  Java源码-Object类
-                </a>
+                Java源码-Object类
               
             
           </h1>
@@ -327,152 +326,112 @@
       
 
       
-        
-          
-          Object类是java类的祖先类，所以学习它显得很重要，它的方法如下：1234- public native int hashCode()- public boolean equals(Object obj)- protected native Object clone()- public Str
-          ...
+        <h3 id="Object类是java类的祖先类，所以学习它显得很重要，它的方法如下："><a href="#Object类是java类的祖先类，所以学习它显得很重要，它的方法如下：" class="headerlink" title="Object类是java类的祖先类，所以学习它显得很重要，它的方法如下："></a>Object类是java类的祖先类，所以学习它显得很重要，它的方法如下：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">- public native int hashCode()</span><br><span class="line">- public boolean equals(Object obj)</span><br><span class="line">- protected native Object clone()</span><br><span class="line">- public String toString()</span><br></pre></td></tr></table></figure>
+<h4 id="public-native-int-hashCode"><a href="#public-native-int-hashCode" class="headerlink" title="public native int hashCode()"></a>public native int hashCode()</h4><p>这是一个本地方法，返回的int值，不同的JVM返回的值可能不一样，大多数JVM返回的是地址值；其源码注释如下：</p>
+<ol>
+<li>其返回对象的哈希值，这个方法主要用于哈希表，如java.util.HashMap中就用到；</li>
+<li>通常hashCode有如下约定： 如果对象的equals方法没有被修改，那么同一个对象调用此方法应该返回同一个值，同一程序在应用中的另一次执行，其返回值可以不同；</li>
+<li>两个对象调用equals方法相等，那么他们两个的hashCode应该也一样；</li>
+<li>两个对象调用equals方法不相等，那么他们两个hashCode应该不一样，但是程序员应该注意到为不相等的对象生产不同的hashCode值可以提高哈希表的性能；</li>
+</ol>
+<h4 id="public-boolean-equals-Object-obj"><a href="#public-boolean-equals-Object-obj" class="headerlink" title="public boolean equals(Object obj)"></a>public boolean equals(Object obj)</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public boolean equals(Object obj) &#123;</span><br><span class="line">    return (this == obj);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>指示两个对象是否相等，根据两个对象的地址判断是否相等，如果此方法被修改，那么最好是把hashCode方法也修改；</p>
+<h4 id="protected-native-Object-clone"><a href="#protected-native-Object-clone" class="headerlink" title="protected native Object clone()"></a>protected native Object clone()</h4><p>这是一个本地方法，用于对象的复制；</p>
+<p>x.clone() != x<br>will be true, and that the expression:<br> x.clone().getClass() == x.getClass()<br>will be true, but these are not absolute requirements. While it is typically the case that:<br> x.clone().equals(x)<br>will be true, this is not an absolute requirement.</p>
 
-          <div class="post-more-link text-center">
-            <a class="btn" href="/module/blog/2016/04/25/object-src/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
       
     </div>
     
     <div>
       
+        
+      
     </div>
 
     <div>
+      
+        
+<div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton", disable="enable", onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}", style="cursor: pointer; border: 0; outline: 0; border-radius: 100%; padding: 0; margin: 0; letter-spacing: normal; text-transform: none; text-indent: 0px; text-shadow: none">
+    <span onmouseover="this.style.color='rgb(236,96,0)';this.style.background='rgb(204,204,204)'" onMouseOut="this.style.color='#fff';this.style.background='rgb(236,96,0)'" style="display: inline-block; width: 70px; height: 70px; border-radius: 100%; line-height: 81px; color: #fff; font: 400 35px/75px 'microsofty'; background: rgb(236,96,0)">赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/module/blog/assets/images/weixin.png" alt="Yale WeChat Pay" style="width: 200px; max-width: 100%; display: inline-block"/>
+        <p>微信打赏</p>
+      </div>
+    
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/module/blog/assets/images/zhifubao.jpg" alt="Yale Alipay" style="width: 200px; max-width: 100%; display: inline-block"/>
+        <p>支付宝打赏</p>
+      </div>
+    
+  </div>
+</div>
+
       
     </div>
 
     <footer class="post-footer">
       
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/module/blog/2016/04/24/hello-world/" itemprop="url">
-                  hello-world
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-04-24T20:47:27+08:00" content="2016-04-24">
-              2016-04-24
-            </time>
-          </span>
-
+        <div class="post-tags">
           
-
+            <a href="/module/blog/tags/Java/" rel="tag">#Java</a>
           
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/module/blog/2016/04/24/hello-world/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/24/hello-world/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
+            <a href="/module/blog/tags/Object/" rel="tag">#Object</a>
           
         </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          
-          #Hello world!
-
-          
-
-          <div class="post-more-link text-center">
-            <a class="btn" href="/module/blog/2016/04/24/hello-world/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/module/blog/2016/04/24/hello-world/" rel="next" title="hello-world">
+                <i class="fa fa-chevron-left"></i> hello-world
+              </a>
+            
           </div>
-        
-      
-    </div>
-    
-    <div>
-      
-    </div>
 
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
       
 
       
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </article>
 
 
-    
-  </section>
 
-  
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2016/04/25/object-src/"
+     data-title="Java源码-Object类"
+     data-content=""
+     data-url="http://yoursite.com/module/blog/module/blog/2016/04/25/object-src/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
 
 
           </div>
@@ -480,6 +439,14 @@
 
 
           
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/04/25/object-src/"
+           data-title="Java源码-Object类" data-url="http://yoursite.com/module/blog/module/blog/2016/04/25/object-src/">
+      </div>
+    
+  </div>
+
 
         </div>
         
@@ -499,8 +466,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/module/blog/assets/images/head.jpg"
@@ -550,6 +526,17 @@
 
       </section>
 
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Object类是java类的祖先类，所以学习它显得很重要，它的方法如下："><span class="nav-number">1.</span> <span class="nav-text">Object类是java类的祖先类，所以学习它显得很重要，它的方法如下：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#public-native-int-hashCode"><span class="nav-number">1.1.</span> <span class="nav-text">public native int hashCode()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#public-boolean-equals-Object-obj"><span class="nav-number">1.2.</span> <span class="nav-text">public boolean equals(Object obj)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#protected-native-Object-clone"><span class="nav-number">1.3.</span> <span class="nav-text">protected native Object clone()</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
       
 
     </div>
@@ -653,6 +640,10 @@
 
 
   
+  <script type="text/javascript" src="/module/blog/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/module/blog/js/src/post-details.js?v=5.0.1"></script>
+
+
 
   
 

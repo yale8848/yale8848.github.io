@@ -43,3 +43,14 @@ a.blog-text{
 a.blog-text:hover{
     color: #008000;
 }
+@media only screen
+and (max-width : 1024px) {
+  body{
+      width: 100%;
+      height: 100%;
+      background-image: url("../img/index/index-bk-m.jpg");
+      background-repeat: no-repeat;
+      background-size:100%;
+  }
+
+}
